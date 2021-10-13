@@ -1,0 +1,22 @@
+{
+  "name": "zmkey",
+  "version": "0.0.1",
+  "description": "ZMK kaymap editor",
+  "source": "src/index.html",
+  "repository": "https://github.com/Bankkis/ZMKey.git",
+  "author": "i7d3v3l0p3r@yandex.ru",
+  "license": "MIT",
+  "packageManager": "yarn@3.0.2",
+  "browserslist": "> 0.5%, last 2 versions, not dead",
+  "scripts": {
+    "start": "parcel",
+    "build": "parcel build"
+  },
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.0.0",
+    "@parcel/transformer-typescript-tsc": "^2.0.0",
+    "@parcel/validator-typescript": "^2.0.0",
+    "parcel": "^2.0.0",
+    "typescript": ">=3.0.0"
+  }
+}
