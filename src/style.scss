@@ -11,10 +11,32 @@ body {
     flex-direction: column;
 }
 
-.tab-bar {
-    height: 20px;
+.menu-bar {
+    height: 30px;
+    display: flex;
+    background: #222;
+
+    &__item {
+        background: none;
+        border: none;
+        color: #9d9d9d;
+        padding: 0 10px;
+        font-size: 15px;
+
+        &:hover {
+            cursor: pointer;
+            background: #333;
+        }
+    }
+
+    &__center-tabs {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+    }
 }
 
 .pixi-container {
     height: 100%;
+    display: flex;
 }
