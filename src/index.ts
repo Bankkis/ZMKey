@@ -2,16 +2,22 @@ import { Application } from 'pixi.js';
 import { KeyCap } from './entities/keycap';
 import { AppSettings } from './interfaces';
 
-const app = new Application({ backgroundColor: 0xFFFFFF, resolution: window.devicePixelRatio, antialias: true });
-const appContainer = document.getElementById('app-container');
+const appContainer = document.getElementById('pixi-container');
+const app = new Application({
+  backgroundColor: 0xffffff,
+  resolution: window.devicePixelRatio,
+  antialias: true,
+  width: appContainer?.clientWidth,
+  height: appContainer?.clientHeight,
+});
 
 const appSettings: AppSettings = {
-    unitSize: 70,
-    keyCapCornerRadius: 0.1,
-}
+  unitSize: 70,
+  keyCapCornerRadius: 0.1,
+};
 
 if (appContainer) {
-    appContainer.innerHTML = ''; // For development
+  appContainer.innerHTML = ''; // For development
 }
 appContainer?.appendChild(app.view);
 

@@ -10,13 +10,31 @@
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "scripts": {
     "start": "parcel",
-    "build": "parcel build"
+    "build": "parcel build",
+    "lint": "eslint '*/**/*.{js,ts}' --quiet --fix",
+    "format": "prettier --write .",
+    "postinstall": "husky install",
+    "prepublishOnly": "pinst --disable",
+    "postpublish": "pinst --enable"
+  },
+  "lint-staged": {
+    "*.{js,ts}": ["eslint"]
   },
   "devDependencies": {
     "@parcel/transformer-sass": "^2.0.0",
     "@parcel/transformer-typescript-tsc": "^2.0.0",
     "@parcel/validator-typescript": "^2.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
+    "eslint": "^8.0.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "husky": "^7.0.2",
+    "lint-staged": "^11.2.3",
     "parcel": "^2.0.0",
+    "pinst": "^2.1.6",
+    "precise-commits": "^1.0.2",
+    "prettier": "^2.4.1",
     "typescript": ">=3.0.0"
   },
   "dependencies": {

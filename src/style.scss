@@ -4,6 +4,17 @@ body {
     margin: 0 auto;
 }
 
-#app-container {
+.app-layout {
+    width: 100vw;
     height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.tab-bar {
+    height: 20px;
+}
+
+.pixi-container {
+    height: 100%;
 }
