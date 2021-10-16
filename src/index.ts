@@ -1,3 +1,5 @@
+import './style.scss';
+
 import { Application } from 'pixi.js';
 import { KeyCap } from './entities/keycap';
 import { AppSettings } from './interfaces';
