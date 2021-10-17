@@ -1,5 +1,6 @@
 import { Rectangle, Container } from 'pixi.js';
 import { Button } from '../components/button';
+import { RoundButton } from '../components/round-button';
 import { KeyCap } from '../entities/keycap';
 import { AppSettings, ZMKeyApplication } from '../interfaces';
 import { layoutActions } from '../store';
@@ -20,12 +21,9 @@ export class LayoutEditor {
     new KeyCap(this._app, this._appSettings, { x: 1, y: 2 }, { width: 1, height: 2 }).appendTo(this._container);
     new KeyCap(this._app, this._appSettings, { x: 2, y: 2 }, { width: 6.25, height: 1 }).appendTo(this._container);
 
-    new Button({
+    new RoundButton({
       text: '+',
       position: { x: 20, y: 20 },
-      padding: { x: 11, y: 0 },
-      borderRadius: 100,
-      backgroundColor: 0x000000,
     }).appendTo(this._container);
 
     this._initSubscriptions();
