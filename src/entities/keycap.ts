@@ -8,6 +8,14 @@ export class KeyCap {
   private _graphics = new Graphics();
   private _subscriptions: ((() => void) | undefined)[] = [];
 
+  public get position(): Point2D {
+    return { ...this._position };
+  }
+
+  public get size(): KeyCapSize {
+    return { ...this._size };
+  }
+
   constructor(
     private _app: ZMKeyApplication,
     private _appSettings: AppSettings,
@@ -73,7 +81,8 @@ export class KeyCap {
     }
   }
 
-  public appendTo(container: Container): void {
+  public appendTo(container: Container): KeyCap {
     container.addChild(this._graphics);
+    return this;
   }
 }

@@ -1,13 +1,16 @@
 import { Rectangle, Container } from 'pixi.js';
-import { Button } from '../components/button';
 import { RoundButton } from '../components/round-button';
 import { KeyCap } from '../entities/keycap';
-import { AppSettings, ZMKeyApplication } from '../interfaces';
+import { AppSettings, Point2D, ZMKeyApplication } from '../interfaces';
 import { layoutActions } from '../store';
 
 export class LayoutEditor {
   private _container = new Container();
+  private _layoutOffset: Point2D = { x: 1, y: 1 };
   private _keyCaps: KeyCap[] = [];
+  
+  /** UI Components */
+  private _addButton!: RoundButton;
 
   constructor(private _app: ZMKeyApplication, private _appSettings: AppSettings) {
     this._container.hitArea = new Rectangle(0, 0, _app.view.width, _app.view.height);
@@ -16,24 +19,40 @@ export class LayoutEditor {
 
     this._app.stage.addChild(this._container);
 
-    new KeyCap(this._app, this._appSettings, { x: 1, y: 1 }, { width: 1, height: 1 }).appendTo(this._container);
-    new KeyCap(this._app, this._appSettings, { x: 2, y: 1 }, { width: 2, height: 1 }).appendTo(this._container);
-    new KeyCap(this._app, this._appSettings, { x: 1, y: 2 }, { width: 1, height: 2 }).appendTo(this._container);
-    new KeyCap(this._app, this._appSettings, { x: 2, y: 2 }, { width: 6.25, height: 1 }).appendTo(this._container);
-
-    new RoundButton({
-      text: '+',
-      position: { x: 20, y: 20 },
-    }).appendTo(this._container);
-
+    this._initUI();
     this._initSubscriptions();
   }
 
+  private _initUI(): void {
+    this._addButton = new RoundButton({
+      text: '+',
+      position: { x: 20, y: 20 },
+    }).appendTo(this._container);
+  }
+
   private _initSubscriptions(): void {
-    this._container.on('pointerdown', () => {
-      if (this._app.state?.layout.value?.selectedKey) {
-        layoutActions.selectKey(null);
-      }
-    });
+    this._container.on('pointerdown', this._handleContainerClick.bind(this));
+    this._addButton.on('click', this._handleAddButtonClick.bind(this));
+  }
+
+  private _handleAddButtonClick(): void {
+    let newPosition: Point2D;
+    if (this._keyCaps.length) {
+      const lastKeycap = this._keyCaps[this._keyCaps.length - 1];
+      console.log(lastKeycap.position, lastKeycap.size)
+      const newX = lastKeycap.position.x >= 15 ? this._layoutOffset.x : lastKeycap.position.x + lastKeycap.size.width;
+      const newY = lastKeycap.position.x >= 15 ? lastKeycap.position.y + lastKeycap.size.height : lastKeycap.position.y;
+      newPosition = { x: newX, y: newY };
+    } else {
+      newPosition = { ...this._layoutOffset };
+    }
+    
+    this._keyCaps.push(new KeyCap(this._app, this._appSettings, newPosition, { width: 1, height: 1 }).appendTo(this._container));
+  }
+
+  private _handleContainerClick(): void {
+    if (this._app.state?.layout.value?.selectedKey) {
+      layoutActions.selectKey(null);
+    }
   }
 }

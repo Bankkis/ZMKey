@@ -22,6 +22,7 @@ body {
         color: #9d9d9d;
         padding: 0 10px;
         font-size: 15px;
+        user-select: none;
 
         &:hover {
             cursor: pointer;

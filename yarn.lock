@@ -3013,6 +3013,13 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
+"nanoevents@npm:^6.0.2":
+  version: 6.0.2
+  resolution: "nanoevents@npm:6.0.2"
+  checksum: 73d8c8f584b850bae6705820710a20c19be61145a4a6ad3b157caf1fea52d46f48e0d1f1c1452019c0e84869f226debad2245218f0b0c3f9dffb7afc9b42e663
+  languageName: node
+  linkType: hard
+
 "nanoid@npm:^3.1.28, nanoid@npm:^3.1.30":
   version: 3.1.30
   resolution: "nanoid@npm:3.1.30"
@@ -4366,6 +4373,7 @@ typescript@^4.4.4:
     eslint-plugin-prettier: ^4.0.0
     husky: ^7.0.2
     lint-staged: ^11.2.3
+    nanoevents: ^6.0.2
     nanoid: ^3.1.30
     nanostores: ^0.4.9
     pinst: ^2.1.6
