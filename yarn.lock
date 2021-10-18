@@ -402,6 +402,71 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@pixi-essentials/area-allocator@npm:~1.0.3":
+  version: 1.0.3
+  resolution: "@pixi-essentials/area-allocator@npm:1.0.3"
+  peerDependencies:
+    "@pixi/math": ^6.0.0
+  checksum: 1afdc132eee04e91808f38411306da0a9934d6fe94991d490f362d21e95f7efac0a7f7e957b552adbd62bf20b16d9219878a7ea5f3d5b207a63a0166202659e2
+  languageName: node
+  linkType: hard
+
+"@pixi-essentials/cull@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "@pixi-essentials/cull@npm:1.1.0"
+  peerDependencies:
+    "@pixi/display": ^6.0.0
+    "@pixi/math": ^6.0.0
+  checksum: 74b180631ab66e86eafbd9f96ace24ceb3061e98b3cf8eca48ab51f55350c19ea2f109ab52d2b16d12ecb94fc334b1c7a307db7f8bb2333e688a45c4f4cf2341
+  languageName: node
+  linkType: hard
+
+"@pixi-essentials/gradients@npm:^0.0.4":
+  version: 0.0.4
+  resolution: "@pixi-essentials/gradients@npm:0.0.4"
+  peerDependencies:
+    "@pixi/core": ^6.0.0
+    "@pixi/math": ^6.0.0
+    "@pixi/sprite": ^6.0.0
+  checksum: 99f16938610d528b63c9ffe9d9615ba0425c0888b57da440467b217ef341ecb2a318fb62b9ddcd9883ad27b63fe5e2df5baac21be4c2a1486c983c2538d3861f
+  languageName: node
+  linkType: hard
+
+"@pixi-essentials/svg@npm:^1.1.5":
+  version: 1.1.6
+  resolution: "@pixi-essentials/svg@npm:1.1.6"
+  dependencies:
+    "@pixi-essentials/cull": ^1.1.0
+    "@pixi-essentials/gradients": ^0.0.4
+    "@pixi-essentials/texture-allocator": ~1.0.5
+    d-path-parser: ^1.0.0
+    libtess: ~1.2.2
+    tinycolor2: ^1.4.1
+  peerDependencies:
+    "@pixi/core": ^6.0.0
+    "@pixi/display": ^6.0.0
+    "@pixi/filter-color-matrix": ^6.0.0
+    "@pixi/graphics": ^6.0.0
+    "@pixi/math": ^6.0.0
+    "@pixi/sprite": ^6.0.0
+    "@pixi/text": ^6.0.0
+  checksum: 7d60bfbe72809296c9c1f09ea15e46687e3d42fb7a1f1f2faf14d862f79e66cdba6cf4e3c4bc233a57e118c92c2a090ebc92dae3630c0cea5a9c08cf9c4776b4
+  languageName: node
+  linkType: hard
+
+"@pixi-essentials/texture-allocator@npm:~1.0.5":
+  version: 1.0.9
+  resolution: "@pixi-essentials/texture-allocator@npm:1.0.9"
+  dependencies:
+    "@pixi-essentials/area-allocator": ~1.0.3
+  peerDependencies:
+    "@pixi/constants": ^6.0.0
+    "@pixi/core": ^6.0.0
+    "@pixi/math": ^6.0.0
+  checksum: a71a524e56bb72ca3515f9ce261b8dc26b1b50d7893ee49b6758a672f85be0fced9c6e129732bb73c759b174c4a69c31e2e7ac74ec47556900dcdbf918909bed
+  languageName: node
+  linkType: hard
+
 "@pixi/accessibility@npm:6.1.3":
   version: 6.1.3
   resolution: "@pixi/accessibility@npm:6.1.3"
@@ -807,6 +872,13 @@ __metadata:
   version: 2.1.1
   resolution: "@types/earcut@npm:2.1.1"
   checksum: 7845dab97ba2bf379caeb4fb91bb732e6710b0ce018a8e357f023cb96ac2fa5c64352461e93ecac2504966dcf6b0b882d117c2258cf15a679bd0063b3cee0e14
+  languageName: node
+  linkType: hard
+
+"@types/feather-icons@npm:^4.7.0":
+  version: 4.7.0
+  resolution: "@types/feather-icons@npm:4.7.0"
+  checksum: cfd81495d132851502a7ee94083435d30a18a5a315615d049a9a0d9ce54a19f64c87444d36896a30591c8d543be1bf1c20873423d6acaf5caf5441e4c88da79b
   languageName: node
   linkType: hard
 
@@ -1239,6 +1311,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"classnames@npm:^2.2.5":
+  version: 2.3.1
+  resolution: "classnames@npm:2.3.1"
+  checksum: 14db8889d56c267a591f08b0834989fe542d47fac659af5a539e110cc4266694e8de86e4e3bbd271157dbd831361310a8293e0167141e80b0f03a0f175c80960
+  languageName: node
+  linkType: hard
+
 "clean-stack@npm:^2.0.0":
   version: 2.2.0
   resolution: "clean-stack@npm:2.2.0"
@@ -1362,6 +1441,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"core-js@npm:^3.1.3":
+  version: 3.18.3
+  resolution: "core-js@npm:3.18.3"
+  checksum: 4aa5017992c18b0a09ded6c7dbf3c3880b27b6ade97a522dba332f52381466978d441317e5aad49f0684e9241aecc450e3e72c550ddaccfc9fb1e69c5908e53c
+  languageName: node
+  linkType: hard
+
 "core-util-is@npm:~1.0.0":
   version: 1.0.3
   resolution: "core-util-is@npm:1.0.3"
@@ -1414,6 +1500,13 @@ __metadata:
     shebang-command: ^2.0.0
     which: ^2.0.1
   checksum: 671cc7c7288c3a8406f3c69a3ae2fc85555c04169e9d611def9a675635472614f1c0ed0ef80955d5b6d4e724f6ced67f0ad1bb006c2ea643488fcfef994d7f52
+  languageName: node
+  linkType: hard
+
+"d-path-parser@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "d-path-parser@npm:1.0.0"
+  checksum: 0862f132f70451acfbabc02d49d40dd14e23b7a5f3edfe3b96dd4c54b285622bc74d42e8f74891366834d8ad989ed595a9ae28ac2ae6a788722d62048ce0aed1
   languageName: node
   linkType: hard
 
@@ -2042,6 +2135,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"feather-icons@npm:^4.28.0":
+  version: 4.28.0
+  resolution: "feather-icons@npm:4.28.0"
+  dependencies:
+    classnames: ^2.2.5
+    core-js: ^3.1.3
+  checksum: 9d098d2ab7ddbce27d9eedca5262e770ac332642bf8fb199ad6d1c8309be7856071374b7bb5bb0b09169b021e35c3a3c602c85d589325ef20e7d4ead2e74a3e7
+  languageName: node
+  linkType: hard
+
 "file-entry-cache@npm:^6.0.1":
   version: 6.0.1
   resolution: "file-entry-cache@npm:6.0.1"
@@ -2657,6 +2760,13 @@ fsevents@~2.3.2:
     prelude-ls: ^1.2.1
     type-check: ~0.4.0
   checksum: 12c5021c859bd0f5248561bf139121f0358285ec545ebf48bb3d346820d5c61a4309535c7f387ed7d84361cf821e124ce346c6b7cef8ee09a67c1473b46d0fc4
+  languageName: node
+  linkType: hard
+
+"libtess@npm:~1.2.2":
+  version: 1.2.2
+  resolution: "libtess@npm:1.2.2"
+  checksum: a0a4d19c2ade6a1221dc076ab6177110562368c427e1f659f1f039cca4c947ed6b66a14e4f1f4f3cd599ecc7ee7ab09db6267dcd49ceccf17d0534f521f1f9c6
   languageName: node
   linkType: hard
 
@@ -4099,6 +4209,13 @@ resolve@^1.20.0:
   languageName: node
   linkType: hard
 
+"tinycolor2@npm:^1.4.1":
+  version: 1.4.2
+  resolution: "tinycolor2@npm:1.4.2"
+  checksum: 57ed262e08815a4ab0ed933edafdbc6555a17081781766149813b44a080ecbe58b3ee281e81c0e75b42e4d41679f138cfa98eabf043f829e0683c04adb12c031
+  languageName: node
+  linkType: hard
+
 "to-regex-range@npm:^5.0.1":
   version: 5.0.1
   resolution: "to-regex-range@npm:5.0.1"
@@ -4365,12 +4482,15 @@ typescript@^4.4.4:
     "@parcel/transformer-sass": ^2.0.0
     "@parcel/transformer-typescript-tsc": ^2.0.0
     "@parcel/validator-typescript": ^2.0.0
+    "@pixi-essentials/svg": ^1.1.5
+    "@types/feather-icons": ^4.7.0
     "@types/offscreencanvas": ^2019.6.4
     "@typescript-eslint/eslint-plugin": ^5.0.0
     "@typescript-eslint/parser": ^5.0.0
     eslint: ^8.0.1
     eslint-config-prettier: ^8.3.0
     eslint-plugin-prettier: ^4.0.0
+    feather-icons: ^4.28.0
     husky: ^7.0.2
     lint-staged: ^11.2.3
     nanoevents: ^6.0.2

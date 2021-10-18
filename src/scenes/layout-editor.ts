@@ -1,5 +1,5 @@
 import { Rectangle, Container } from 'pixi.js';
-import { RoundButton } from '../components/round-button';
+import { IconButton } from '../components/icon-button';
 import { KeyCap } from '../entities/keycap';
 import { AppSettings, Point2D, ZMKeyApplication } from '../interfaces';
 import { layoutActions } from '../store';
@@ -8,9 +8,10 @@ export class LayoutEditor {
   private _container = new Container();
   private _layoutOffset: Point2D = { x: 1, y: 1 };
   private _keyCaps: KeyCap[] = [];
-  
+
   /** UI Components */
-  private _addButton!: RoundButton;
+  private _addButton!: IconButton;
+  private _uploadKLEButton!: IconButton;
 
   constructor(private _app: ZMKeyApplication, private _appSettings: AppSettings) {
     this._container.hitArea = new Rectangle(0, 0, _app.view.width, _app.view.height);
@@ -24,9 +25,19 @@ export class LayoutEditor {
   }
 
   private _initUI(): void {
-    this._addButton = new RoundButton({
-      text: '+',
+    this._addButton = new IconButton({
+      icon: 'plus',
+      tooltip: 'Add Key',
       position: { x: 20, y: 20 },
+      padding: 3,
+    }).appendTo(this._container);
+
+    this._uploadKLEButton = new IconButton({
+      icon: 'download',
+      tooltip: 'Load KLE layout',
+      position: { x: 20, y: 60 },
+      iconSize: 22,
+      padding: 5,
     }).appendTo(this._container);
   }
 
@@ -39,15 +50,16 @@ export class LayoutEditor {
     let newPosition: Point2D;
     if (this._keyCaps.length) {
       const lastKeycap = this._keyCaps[this._keyCaps.length - 1];
-      console.log(lastKeycap.position, lastKeycap.size)
       const newX = lastKeycap.position.x >= 15 ? this._layoutOffset.x : lastKeycap.position.x + lastKeycap.size.width;
       const newY = lastKeycap.position.x >= 15 ? lastKeycap.position.y + lastKeycap.size.height : lastKeycap.position.y;
       newPosition = { x: newX, y: newY };
     } else {
       newPosition = { ...this._layoutOffset };
     }
-    
-    this._keyCaps.push(new KeyCap(this._app, this._appSettings, newPosition, { width: 1, height: 1 }).appendTo(this._container));
+
+    this._keyCaps.push(
+      new KeyCap(this._app, this._appSettings, newPosition, { width: 1, height: 1 }).appendTo(this._container),
+    );
   }
 
   private _handleContainerClick(): void {
