@@ -1,9 +1,7 @@
 import { defineConfig } from 'vite';
+import defaultConfig from './vite.config';
 
 export default defineConfig({
-  root: './src',
+  ...defaultConfig,
   base: 'ZMKey',
-  build: {
-    outDir: '../dist',
-  },
 });
