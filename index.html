@@ -1,18 +1,35 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <meta charset="utf-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>ZMKey</title>
-      <script type="module" crossorigin src="/ZMKey/assets/index.daaef370.js"></script>
+      <script type="module" crossorigin="" src="/ZMKey/assets/index.daaef370.js"></script>
       <link rel="modulepreload" href="/ZMKey/assets/vendor.8fe83a52.js">
       <link rel="stylesheet" href="/ZMKey/assets/index.34a745f2.css">
     </head>
     <body>
         <div class="app-layout">
-            <include src="views/menu-bar.html"></include>
+            <div class="menu-bar">
+    <button class="menu-bar__item">Menu</button>
+    <div class="menu-bar__center-tabs">
+        <button class="menu-bar__item">Keymap</button>
+        <button class="menu-bar__item">Layout</button>
+    </div>
+</div>
             <div class="pixi-container" id="pixi-container">
-                <include src="views/layout-editor.html"></include>
+                <div class="layout-editor">
+    <div class="layout-editor__menu">
+        <button class="layout-editor__menu-button" id="layout-editor__add-key">
+            <div style="display: flex"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></div>
+            <span>Add Key</span>
+        </button>
+        <button class="layout-editor__menu-button _download" id="layout-editor__load-kle">
+            <div style="display: flex"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-download"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg></div>
+            <span>Load KLE layout</span>
+        </button>
+    </div>
+</div>
             </div>
         </div>
         
