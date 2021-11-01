@@ -4,20 +4,16 @@
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>ZMKey</title>
-      <script type="module" crossorigin src="/ZMKey/assets/index.633a3fc3.js"></script>
-      <link rel="modulepreload" href="/ZMKey/assets/vendor.2cfee026.js">
-      <link rel="stylesheet" href="/ZMKey/assets/index.18ced720.css">
+      <script type="module" crossorigin src="/ZMKey/assets/index.daaef370.js"></script>
+      <link rel="modulepreload" href="/ZMKey/assets/vendor.8fe83a52.js">
+      <link rel="stylesheet" href="/ZMKey/assets/index.34a745f2.css">
     </head>
     <body>
         <div class="app-layout">
-            <div class="menu-bar">
-                <button class="menu-bar__item">Menu</button>
-                <div class="menu-bar__center-tabs">
-                    <button class="menu-bar__item">Keymap</button>
-                    <button class="menu-bar__item">Layout</button>
-                </div>
+            <include src="views/menu-bar.html"></include>
+            <div class="pixi-container" id="pixi-container">
+                <include src="views/layout-editor.html"></include>
             </div>
-            <div class="pixi-container" id="pixi-container"></div>
         </div>
         
     </body>
