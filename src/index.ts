@@ -22,7 +22,12 @@ const appSettings: AppSettings = {
 };
 
 if (appContainer) {
-  appContainer.innerHTML = ''; // For development
+  // For development
+  const nodes = document.getElementsByTagName("canvas");
+
+  for (const node of Array.from(nodes)) {
+      node.parentNode?.removeChild(node);
+  }
 }
 appContainer?.appendChild(app.view);
 

@@ -1,0 +1,38 @@
+.layout-editor {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+
+    &__menu {
+        pointer-events: all;
+        padding: 10px;
+    }
+
+    &__menu-button {
+        display: flex;
+        align-items: center;
+        background: #efefef;
+        border: none;
+        border-radius: 15px;
+        margin: 5px;
+        padding: 3px;
+        cursor: pointer;
+
+        span {
+            display: none;
+            padding: 0 5px;
+            font-weight: 600;
+        }
+
+        &:hover {
+            span {
+                display: block;
+            }
+        }
+
+        &._download {
+            padding: 4px;
+        }
+    }
+}
