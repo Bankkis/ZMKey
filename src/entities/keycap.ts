@@ -3,25 +3,59 @@ import { Container, Graphics } from 'pixi.js';
 import { AppSettings, KeyCapSize, Point2D, ZMKeyApplication } from '../interfaces';
 import { layoutActions } from '../store';
 
+export interface KeyCapOptions {
+  app: ZMKeyApplication;
+  appSettings: AppSettings;
+  position: Point2D;
+  secondaryPosition?: Point2D;
+  size: KeyCapSize;
+  secondarySize?: KeyCapSize;
+}
+
 export class KeyCap {
   public id = nanoid();
   private _graphics = new Graphics();
   private _subscriptions: ((() => void) | undefined)[] = [];
 
+  private _app: ZMKeyApplication;
+  private _appSettings: AppSettings;
+  private _position: Point2D;
+  private _secondaryPosition?: Point2D;
+  private _size: KeyCapSize;
+  private _secondarySize?: KeyCapSize;
+
   public get position(): Point2D {
     return { ...this._position };
+  }
+
+  public get x(): number {
+    return this._position.x;
+  }
+
+  public get y(): number {
+    return this._position.y;
   }
 
   public get size(): KeyCapSize {
     return { ...this._size };
   }
 
-  constructor(
-    private _app: ZMKeyApplication,
-    private _appSettings: AppSettings,
-    private _position: Point2D,
-    private _size: KeyCapSize,
-  ) {
+  public get width(): number {
+    return this._size.width;
+  }
+
+  public get height(): number {
+    return this._size.height;
+  }
+
+  constructor(options: KeyCapOptions) {
+    this._app = options.app;
+    this._appSettings = options.appSettings;
+    this._position = options.position;
+    this._size = options.size;
+    this._secondaryPosition = options.secondaryPosition;
+    this._secondarySize = options.secondarySize;
+
     this._graphics.interactive = true;
     this._graphics.cursor = 'pointer';
 
@@ -29,6 +63,11 @@ export class KeyCap {
 
     this._initSubscriptions();
     this._draw();
+  }
+
+  public moveBy(delta: Point2D): void {
+    this._graphics.x += delta.x;
+    this._graphics.y += delta.y;
   }
 
   private _initSubscriptions(): void {
