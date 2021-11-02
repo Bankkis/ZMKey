@@ -1,7 +1,7 @@
 import { Rectangle, Container, InteractionEvent, Point } from 'pixi.js';
 import { KeyCap } from '../entities/keycap';
 import { AppSettings, Point2D, ZMKeyApplication } from '../interfaces';
-import { KLERows } from '../lib/kle';
+import { KLEKey, KLERows } from '../lib/kle';
 import { layoutActions } from '../store';
 
 export class LayoutEditor {
@@ -96,24 +96,46 @@ export class LayoutEditor {
     if (reader.result) {
       const rows: KLERows = JSON.parse(reader.result as string);
       
-      let prevKey: KeyCap | null;
-      let prevY = 0;
+      const keyState: KLEKey = { x: 0, y: 0, rx: 0, ry: 0, h: 1, w: 1 };
+      const cluster: Point2D = { x: 0, y: 0 };
       for (const row of rows) {
-        prevKey = null;
         for (const key of row) {
           if (typeof key === 'object') {
-            const newX: number = key.x ?? (prevKey ? prevKey.x + prevKey.width : 0);
-            const newY = key.y ?? prevY;
+            if ('rx' in key) {
+              keyState.rx = cluster.x = key.rx;
+              keyState.x = cluster.x;
+              keyState.y = cluster.y;
+            }
 
-            const position = { x: newX, y: newY };
-            const size = { width: key.w || key.w2 || 1, height: key.h || key.h2 || 1 };
+            if ('ry' in key) {
+              keyState.ry = cluster.y = key.ry;
+              keyState.x = cluster.x;
+              keyState.y = cluster.y;
+            }
 
-            prevKey = new KeyCap({ app: this._app, appSettings: this._appSettings, position, size });
+            if (key.x) {
+              keyState.x += key.x;
+            }
+            if (key.y) {
+              keyState.y += key.y;
+            }
+          } else {
+            const position = {
+              x: keyState.x,
+              y: keyState.y,
+            };
+            console.log(position);
+            const size = {
+              width: keyState.w || keyState.w2 || 1,
+              height: keyState.h || keyState.h2 || 1,
+            };
+            const keyCap = new KeyCap({ app: this._app, appSettings: this._appSettings, position, size });
 
-            this._keyCaps.push(prevKey.appendTo(this._container));
+            this._keyCaps.push(keyCap.appendTo(this._container));
           }
         }
-        ++prevY;
+        ++keyState.y;
+        keyState.x = keyState.rx;
       }
     }
   }
