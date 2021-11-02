@@ -48,7 +48,8 @@ export class KeyCap {
     return this._size.height;
   }
 
-  constructor(options: KeyCapOptions) {
+  // customData - for development
+  constructor(options: KeyCapOptions, public customData?: any) {
     this._app = options.app;
     this._appSettings = options.appSettings;
     this._position = options.position;
@@ -76,6 +77,9 @@ export class KeyCap {
 
   private _onClick(event: PointerEvent): void {
     layoutActions.selectKey(this.id);
+    if (this.customData) {
+      console.log(this.customData);
+    }
     event.stopPropagation();
   }
 

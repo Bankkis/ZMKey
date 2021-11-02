@@ -113,25 +113,23 @@ export class LayoutEditor {
               keyState.y = cluster.y;
             }
 
-            if (key.x) {
-              keyState.x += key.x;
-            }
-            if (key.y) {
-              keyState.y += key.y;
-            }
+            if (key.x) keyState.x += key.x;
+            if (key.y) keyState.y += key.y;
           } else {
             const position = {
               x: keyState.x,
               y: keyState.y,
             };
-            console.log(position);
+
             const size = {
               width: keyState.w || keyState.w2 || 1,
               height: keyState.h || keyState.h2 || 1,
             };
-            const keyCap = new KeyCap({ app: this._app, appSettings: this._appSettings, position, size });
+            const keyCap = new KeyCap({ app: this._app, appSettings: this._appSettings, position, size }, { ...keyState, key });
 
             this._keyCaps.push(keyCap.appendTo(this._container));
+            
+            keyState.x += size.width;
           }
         }
         ++keyState.y;
