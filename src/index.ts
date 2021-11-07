@@ -1,15 +1,19 @@
 import './style.scss';
 
 import { Application } from 'pixi.js';
+import * as PIXI from 'pixi.js';
 import { AppSettings, ZMKeyApplication } from './interfaces';
 import { rootState } from './store';
 import { LayoutEditor } from './scenes/layout-editor';
 
 const appContainer = document.getElementById('pixi-container');
+
 const app: ZMKeyApplication = new Application({
   backgroundColor: 0xffffff,
   resolution: window.devicePixelRatio,
   antialias: true,
+  autoDensity: true,
+  resizeTo: appContainer,
   width: appContainer?.clientWidth,
   height: appContainer?.clientHeight,
 });
@@ -30,5 +34,6 @@ if (appContainer) {
   }
 }
 appContainer?.appendChild(app.view);
+(window as any).__PIXI_INSPECTOR_GLOBAL_HOOK__ &&  (window as any).__PIXI_INSPECTOR_GLOBAL_HOOK__.register({ PIXI: PIXI });
 
 new LayoutEditor(app, appSettings);

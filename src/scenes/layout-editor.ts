@@ -99,6 +99,10 @@ export class LayoutEditor {
       const keyState: KLEKey = { x: 0, y: 0, rx: 0, ry: 0, h: 1, w: 1 };
       const cluster: Point2D = { x: 0, y: 0 };
       for (const row of rows) {
+        if (!Array.isArray(row)) {
+          // TODO: Parse metadata
+          continue;
+        }
         for (const key of row) {
           if (typeof key === 'object') {
             if ('rx' in key) {
@@ -115,6 +119,15 @@ export class LayoutEditor {
 
             if (key.x) keyState.x += key.x;
             if (key.y) keyState.y += key.y;
+            if ('r' in key) keyState.r = key.r;
+            if ('w' in key) keyState.w = key.w;
+            if ('h' in key) keyState.h = key.h;
+
+            if ('h2' in key && !('h' in key)) keyState.h = key.h2;
+            else if ('h2' in key) keyState.h2 = key.h2;
+
+            if ('w2' in key && !('w' in key)) keyState.w = key.w2;
+            else if ('w2' in key) keyState.w2 = key.w2;
           } else {
             const position = {
               x: keyState.x,
@@ -125,11 +138,21 @@ export class LayoutEditor {
               width: keyState.w || keyState.w2 || 1,
               height: keyState.h || keyState.h2 || 1,
             };
-            const keyCap = new KeyCap({ app: this._app, appSettings: this._appSettings, position, size }, { ...keyState, key });
+
+            const pivot = {
+              x: keyState.rx ?? 0,
+              y: keyState.ry ?? 0,
+            };
+
+            const angle = keyState.r ?? 0;
+
+            const keyCap = new KeyCap({ app: this._app, appSettings: this._appSettings, position, size, pivot, angle }, { ...keyState, key });
 
             this._keyCaps.push(keyCap.appendTo(this._container));
             
             keyState.x += size.width;
+            keyState.w = keyState.h = 1;
+            keyState.x2 = keyState.y2 = keyState.w2 = keyState.h2 = 0;
           }
         }
         ++keyState.y;

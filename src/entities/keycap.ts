@@ -10,11 +10,14 @@ export interface KeyCapOptions {
   secondaryPosition?: Point2D;
   size: KeyCapSize;
   secondarySize?: KeyCapSize;
+  pivot?: Point2D;
+  angle?: number;
 }
 
 export class KeyCap {
   public id = nanoid();
   private _graphics = new Graphics();
+  private _pivotGraphics = new Graphics();
   private _subscriptions: ((() => void) | undefined)[] = [];
 
   private _app: ZMKeyApplication;
@@ -23,6 +26,8 @@ export class KeyCap {
   private _secondaryPosition?: Point2D;
   private _size: KeyCapSize;
   private _secondarySize?: KeyCapSize;
+  private _pivot?: Point2D;
+  private _angle: number;
 
   public get position(): Point2D {
     return { ...this._position };
@@ -56,6 +61,8 @@ export class KeyCap {
     this._size = options.size;
     this._secondaryPosition = options.secondaryPosition;
     this._secondarySize = options.secondarySize;
+    this._pivot = options.pivot;
+    this._angle = options.angle;
 
     this._graphics.interactive = true;
     this._graphics.cursor = 'pointer';
@@ -77,8 +84,9 @@ export class KeyCap {
 
   private _onClick(event: PointerEvent): void {
     layoutActions.selectKey(this.id);
+    // for development
     if (this.customData) {
-      console.log(this.customData);
+      console.log(this.customData, this);
     }
     event.stopPropagation();
   }
@@ -88,24 +96,39 @@ export class KeyCap {
     const cornerRadius = this._appSettings.keyCapCornerRadius;
     const isSelected = this._app.state?.layout.value?.selectedKey === this.id;
 
-    const x = this._position.x * unitSize;
-    const y = this._position.y * unitSize;
+    this._graphics.pivot.set(
+      (this._pivot.x - this._position.x) * unitSize,
+      (this._pivot.y - this._position.y) * unitSize
+    );
+
+    this._graphics.position.x = this._position.x * unitSize + this._graphics.pivot.x;
+    this._graphics.position.y = this._position.y * unitSize + this._graphics.pivot.y;
     const width = this._size.width * unitSize - 1; // 1 - is border width
     const height = this._size.height * unitSize - 1; // 1 - is border width
 
+    this._pivotGraphics.clear();
     this._graphics.clear();
-    this._graphics.zIndex = isSelected ? 100 : 1;
+
+    this._pivotGraphics.zIndex = this._graphics.zIndex = isSelected ? 100 : 1;
+
+    this._pivotGraphics.beginFill(0xff0000);
+    this._pivotGraphics.position.set(this._pivot.x * unitSize, this._pivot.y * unitSize);
+    this._pivotGraphics.drawCircle(0, 0, 5)
+    this._pivotGraphics.endFill()
+    this._pivotGraphics.visible = isSelected;
+
+    this._graphics.angle = this._angle;
 
     this._graphics.lineStyle({ width: 1, color: isSelected ? 0xe54803 : 0x000000 });
     this._graphics.beginFill(0xcccccc);
-    this._graphics.drawRoundedRect(x, y, width, height, cornerRadius * unitSize);
+    this._graphics.drawRoundedRect(0, 0, width, height, cornerRadius * unitSize);
     this._graphics.endFill();
 
     this._graphics.lineStyle({ width: 1, color: 0xb7b7b7 });
     this._graphics.beginFill(0xfcfcfc);
     this._graphics.drawRoundedRect(
-      x + unitSize * 0.1,
-      y + unitSize * 0.07,
+      unitSize * 0.1,
+      unitSize * 0.07,
       width - unitSize * 0.2,
       height - unitSize * 0.2,
       cornerRadius * unitSize * 0.8,
@@ -126,6 +149,7 @@ export class KeyCap {
 
   public appendTo(container: Container): KeyCap {
     container.addChild(this._graphics);
+    container.addChild(this._pivotGraphics);
     return this;
   }
 }
